@@ -187,6 +187,10 @@ const elemTotalScorePlayer2 = document.querySelector('.js-total-score-player-2')
 const elemIncrements = document.querySelectorAll('.js-increment');
 const elemDecrements = document.querySelectorAll('.js-decrement');
 
+document.oncontextmenu = function() {
+  return false;
+}
+
 // Update a score
 function updateRowScore(row, player, direction) {
   var scoreInput = document.querySelector(".js-score[data-row='" + row + "'][data-player='" + player + "']");
@@ -203,8 +207,8 @@ function updateRowScore(row, player, direction) {
 elemScores.forEach((elemScore) => {
   elemScore.addEventListener('focus', function(e) {
 	elemScore.select();
-    elemScore.preventDefault();
-    elemScore.stopPropagation();
+    e.preventDefault();
+    e.stopPropagation();
     return false;
   });
 });
