@@ -211,6 +211,9 @@ elemScores.forEach((elemScore) => {
     e.stopPropagation();
     return false;
   });
+  elemScore.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+  });
 });
 
 // Increment score
