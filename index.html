@@ -22,7 +22,8 @@
       .total-scores { cursor: pointer; display: flex; flex-direction: row; align-items: center; justify-content: space-between; }
 	  .total-scores .row-label {visibility: hidden;}
 	  .total-score { width: 140px; text-align: center;}
-	  input[type="text"] {width: 40px; line-height: 40px; padding: 0; border: 1px solid #333; text-align: center; font-size: 18px;}
+	  input[type="number"] {width: 40px; line-height: 40px; padding: 0; border: 1px solid #333; text-align: center; -moz-appearance: textfield; font-size: 18px;}
+	  input[type="number"]::-webkit-outer-spin-button,input[type="number"]::-webkit-inner-spin-button {-webkit-appearance: none; margin: none}
     </style>
   </head>
 
@@ -36,13 +37,13 @@
         <div class="counter">
 		  <label for="player-1-blue">Player 1</label>
           <button class="js-decrement" data-row="1" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-blue" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="1" data-player="1" value="0" tabindex="1" />
+          <input id="player-1-blue" type="number" min="0" class="js-score" data-row="1" data-player="1" value="0" tabindex="1" />
           <button class="js-increment" data-row="1" data-player="1" tabindex="-1">+</button>
         </div>
         <div class="counter">
 		  <label for="player-2-blue">Player 2</label>
           <button class="js-decrement" data-row="1" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-blue" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="1" data-player="2" value="0" tabindex="10" />
+          <input id="player-2-blue" type="number" min="0" class="js-score" data-row="1" data-player="2" value="0" tabindex="10" />
           <button class="js-increment" data-row="1" data-player="2" tabindex="-1">+</button>
         </div>
       </li>
@@ -51,13 +52,13 @@
         <div class="counter">
 		  <label for="player-1-green">Player 1</label>
           <button class="js-decrement" data-row="2" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-green" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="2" data-player="1" value="0" tabindex="2" />
+          <input id="player-1-green" type="number" min="0" class="js-score" data-row="2" data-player="1" value="0" tabindex="2" />
           <button class="js-increment" data-row="2" data-player="1" tabindex="-1">+</button>
         </div>
         <div class="counter">
 		  <label for="player-2-green">Player 2</label>
           <button class="js-decrement" data-row="2" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-green" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="2" data-player="2" value="0" tabindex="11" />
+          <input id="player-2-green" type="number" min="0" class="js-score" data-row="2" data-player="2" value="0" tabindex="11" />
           <button class="js-increment" data-row="2" data-player="2" tabindex="-1">+</button>
         </div>
       </li>
@@ -66,13 +67,13 @@
         <div class="counter">
 		  <label for="player-1-yellow">Player 1</label>
           <button class="js-decrement" data-row="3" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-yellow" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="3" data-player="1" value="0" tabindex="3" />
+          <input id="player-1-yellow" type="number" min="0" class="js-score" data-row="3" data-player="1" value="0" tabindex="3" />
           <button class="js-increment" data-row="3" data-player="1" tabindex="-1">+</button>
         </div>
         <div class="counter">
 		  <label for="player-2-yellow">Player 1</label>
           <button class="js-decrement" data-row="3" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-yellow" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="3" data-player="2" value="0" tabindex="12" />
+          <input id="player-2-yellow" type="number" min="0" class="js-score" data-row="3" data-player="2" value="0" tabindex="12" />
           <button class="js-increment" data-row="3" data-player="2" tabindex="-1">+</button>
         </div>
       </li>
@@ -81,13 +82,13 @@
         <div class="counter">
 		  <label for="player-1-purple">Player 1</label>
           <button class="js-decrement" data-row="4" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-purple" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="4" data-player="1" value="0" tabindex="4" />
+          <input id="player-1-purple" type="number" min="0" class="js-score" data-row="4" data-player="1" value="0" tabindex="4" />
           <button class="js-increment" data-row="4" data-player="1" tabindex="-1">+</button>
         </div>
         <div class="counter">
 		  <label for="player-2-purple">Player 2</label>
           <button class="js-decrement" data-row="4" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-purple" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="4" data-player="2" value="0" tabindex="13" />
+          <input id="player-2-purple" type="number" min="0" class="js-score" data-row="4" data-player="2" value="0" tabindex="13" />
           <button class="js-increment" data-row="4" data-player="2" tabindex="-1">+</button>
         </div>
       </li>
@@ -96,13 +97,13 @@
         <div class="counter">
 		  <label for="player-1-wonders">Player 1</label>
           <button class="js-decrement" data-row="5" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-wonders" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="5" data-player="1" value="0" tabindex="5" />
+          <input id="player-1-wonders" type="number" min="0" class="js-score" data-row="5" data-player="1" value="0" tabindex="5" />
           <button class="js-increment" data-row="5" data-player="1" tabindex="-1">+</button>
         </div>
         <div class="counter">
 		  <label for="player-2-wonders">Player 2</label>
           <button class="js-decrement" data-row="5" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-wonders" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="5" data-player="2" value="0" tabindex="14" />
+          <input id="player-2-wonders" type="number" min="0" class="js-score" data-row="5" data-player="2" value="0" tabindex="14" />
           <button class="js-increment" data-row="5" data-player="2" tabindex="-1">+</button>
         </div>
       </li>
@@ -111,13 +112,13 @@
         <div class="counter">
 		  <label for="player-1-science">Player 1</label>
           <button class="js-decrement" data-row="6" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-science" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="6" data-player="1" value="0" tabindex="6" />
+          <input id="player-1-science" type="number" min="0" class="js-score" data-row="6" data-player="1" value="0" tabindex="6" />
           <button class="js-increment" data-row="6" data-player="1" tabindex="-1">+</button>
         </div>
         <div class="counter">
 		  <label for="player-2-science">Player 2</label>
           <button class="js-decrement" data-row="6" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-science" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="6" data-player="2" value="0" tabindex="15" />
+          <input id="player-2-science" type="number" min="0" class="js-score" data-row="6" data-player="2" value="0" tabindex="15" />
           <button class="js-increment" data-row="6" data-player="2" tabindex="-1">+</button>
         </div>
       </li>
@@ -126,13 +127,13 @@
         <div class="counter">
 		  <label for="player-1-military">Player 1</label>
           <button class="js-decrement" data-row="7" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-military" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="7" data-player="1" value="0" tabindex="7" />
+          <input id="player-1-military" type="number" min="0" class="js-score" data-row="7" data-player="1" value="0" tabindex="7" />
           <button class="js-increment" data-row="7" data-player="1" tabindex="-1">+</button>
         </div>
         <div class="counter">
 		  <label for="player-2-military">Player 2</label>
           <button class="js-decrement" data-row="7" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-military" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="7" data-player="2" value="0" tabindex="16" />
+          <input id="player-2-military" type="number" min="0" class="js-score" data-row="7" data-player="2" value="0" tabindex="16" />
           <button class="js-increment" data-row="7" data-player="2" tabindex="-1">+</button>
         </div>
       </li>
@@ -141,13 +142,13 @@
         <div class="counter">
 		  <label for="player-1-coins">Player 1</label>
           <button class="js-decrement" data-row="8" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-coins" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="8" data-player="1" value="0" tabindex="8" />
+          <input id="player-1-coins" type="number" min="0" class="js-score" data-row="8" data-player="1" value="0" tabindex="8" />
           <button class="js-increment" data-row="8" data-player="1" tabindex="-1">+</button>
         </div>
         <div class="counter">
 		  <label for="player-2-coins">Player 2</label>
           <button class="js-decrement" data-row="8" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-coins" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="8" data-player="2" value="0" tabindex="17" />
+          <input id="player-2-coins" type="number" min="0" class="js-score" data-row="8" data-player="2" value="0" tabindex="17" />
           <button class="js-increment" data-row="8" data-player="2" tabindex="-1">+</button>
         </div>
       </li>
@@ -156,13 +157,13 @@
         <div class="counter">
 		  <label for="player-1-divinities">Player 1</label>
           <button class="js-decrement" data-row="9" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-divinities" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="9" data-player="1" value="0" tabindex="9" />
+          <input id="player-1-divinities" type="number" min="0" class="js-score" data-row="9" data-player="1" value="0" tabindex="9" />
           <button class="js-increment" data-row="9" data-player="1" tabindex="-1">+</button>
         </div>
         <div class="counter">
 		  <label for="player-2-divinities">Player 2</label>
           <button class="js-decrement" data-row="9" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-divinities" type="text" inputmode="numeric" pattern="[0-9]*" class="js-score" data-row="9" data-player="2" value="0" tabindex="18" />
+          <input id="player-2-divinities" type="number" min="0" class="js-score" data-row="9" data-player="2" value="0" tabindex="18" />
           <button class="js-increment" data-row="9" data-player="2" tabindex="-1">+</button>
         </div>
 	  </li>
@@ -191,6 +192,12 @@ document.oncontextmenu = function() {
   return false;
 }
 
+elemScores.forEach((elemScore) => {
+  elemScore.addEventListener('change', (e) => {
+    updateTotalScore();
+  });
+});
+
 // Update a score
 function updateRowScore(row, player, direction) {
   var scoreInput = document.querySelector(".js-score[data-row='" + row + "'][data-player='" + player + "']");
@@ -205,7 +212,7 @@ function updateRowScore(row, player, direction) {
 
 // Select all on input focus score
 elemScores.forEach((elemScore) => {
-  elemScore.addEventListener('focus', function(e) {
+  elemScore.addEventListener('focus', (e) => {
 	elemScore.select();
     e.preventDefault();
     e.stopPropagation();
@@ -218,17 +225,15 @@ elemScores.forEach((elemScore) => {
 
 // Increment score
 elemIncrements.forEach((elemIncrement) => {
-  elemIncrement.addEventListener('click', function(e) {
+  elemIncrement.addEventListener('click', (e) => {
 	updateRowScore(elemIncrement.dataset.row, elemIncrement.dataset.player, 'increment');
-	e.stopPropagation();
   });
 });
 
 // Decrement score
 elemDecrements.forEach((elemDecrement) => {
-  elemDecrement.addEventListener('click', function(e) {
+  elemDecrement.addEventListener('click', (e) => {
 	updateRowScore(elemDecrement.dataset.row, elemDecrement.dataset.player, 'decrement');
-	e.stopPropagation();
   });
 });
 
@@ -247,7 +252,7 @@ function updateTotalScore() {
 }
 
 // Reset all scores
-document.querySelector('.js-total-scores').addEventListener('click', function(e) {
+document.querySelector('.js-total-scores').addEventListener('click', (e) => {
   var result = window.confirm('Reset your score?');
   if (result == true) {
     elemScores.forEach((elemScore) => {
