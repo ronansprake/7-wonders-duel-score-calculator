@@ -24,33 +24,61 @@
 	  .total-score { width: 140px; text-align: center;}
 	  input[type="number"] { width: 40px; line-height: 40px; padding: 0; border: 1px solid #333; text-align: center; -moz-appearance: textfield; font-size: 18px; }
 	  input[type="number"]::-webkit-outer-spin-button,input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: none; }
-.game-version { border: 0; padding: 0; }
+.game-version { border: 0; padding: 0; font-size: 14px; }
 .game-version legend { position: absolute; top: -999px; }
-.game-version ul { position: relative; display: block; list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: row; align-items: center; justify-content: space-evenly; }
-.game-version label {
+.game-version ul { overflow: hidden; position: relative; display: block; list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: row; align-items: center; justify-content: space-evenly; }
+.game-version li {
+    width: 50%;
+}.game-version label {
+	border-radius: 5px;
+	border: 1px solid #DDD;
     display: block;
-    background: #DDD;
-    color: #000;
-    border-radius: 5px;
-    padding: 10px 30px;
+    background: #FFF;
+    color: #999;
+    padding: 6px 30px;
     margin-bottom: 5px;
     cursor: pointer;
-	transition: .3s background;
+	transition: .2s background;
+	position: relative;
+	text-align: center;
+}
+.game-version li:first-child label {
+	border-radius: 4px 0 0 4px;
+	border-right-color: #FFF;
+}
+.game-version li:last-child label {
+	border-radius: 0 4px 4px 0;
+	border-left-color: #FFF;
 }
 input[type="radio"] {
     opacity: 0;
     position: absolute;
 }
-input[type="radio"]:checked + label {
-    background: #FFF;
+.game-version li input[type="radio"]:checked + label {
+	border: 1px solid #333;
+    background: #EEE;
+    color: #333;
 }
 input[type="radio"]:checked + label:after {
  background: $accentcolor;
 }
-input[type="radio"]:checked + label:before {
-    width: 20px;
-    height: 20px;
-}
+@media (pointer: coarse), (hover: none) {
+      [title] {
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+      }
+      [title]:focus::after {
+        content: attr(title);
+        position: absolute;
+        top: 90%;
+        color: #000;
+        background-color: #fff;
+        border: 1px solid;
+        width: fit-content;
+        padding: 3px;
+      }
+    }
     </style>
   </head>
 
