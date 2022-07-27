@@ -23,7 +23,7 @@
 	  .total-scores .row-label {visibility: hidden;}
 	  .total-score { width: 140px; text-align: center;}
 	  input[type="number"] { width: 40px; line-height: 40px; padding: 0; border: 1px solid #333; text-align: center; -moz-appearance: textfield; font-size: 18px; }
-	  input[type="number"]::-webkit-outer-spin-button,input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: none; }
+	  input[type="number"]::-webkit-outer-spin-button,input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 	  .game-version { border: 0; padding: 0; font-size: 14px; }
 	  .game-version legend { position: absolute; top: -999px; }
 	  .game-version ul { overflow: hidden; position: relative; display: block; list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: row; align-items: center; justify-content: space-evenly; }
@@ -33,7 +33,6 @@
 	  .game-version li:last-child label { border-radius: 0 4px 4px 0; border-left-color: #FFF; }
 	  input[type="radio"] { opacity: 0; position: absolute; }
 	  .game-version li input[type="radio"]:checked + label { border: 1px solid #333; background: #EEE; color: #333; }
-	  input[type="radio"]:checked + label:after { background: $accentcolor; }
 	  label { -webkit-tap-highlight-color: rgba(0,0,0,0); }
     </style>
   </head>
@@ -223,7 +222,7 @@ document.oncontextmenu = function() {
   return false;
 }
 
-gameTypes.forEach((gameType) => {
+gameTypes.forEach((gameType, i) => {
   gameType.addEventListener('change', (e) => {
     document.querySelectorAll(".js-score[data-expansion]").forEach((elemScore) => {
   	  elemScore.value = 0;
@@ -237,6 +236,7 @@ gameTypes.forEach((gameType) => {
     updateTotalScore();
   });
 });
+gameTypes[0].dispatchEvent(new Event('change'));
 
 elemScores.forEach((elemScore) => {
   elemScore.addEventListener('change', (e) => {
