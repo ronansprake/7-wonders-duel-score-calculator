@@ -19,11 +19,11 @@
       button { background: none; width: 50px; height: 50px; font-size: 24px; border: none; cursor: pointer; line-height: 38px; }
       .row { display: flex; flex-direction: row; align-items: center; justify-content: space-between; margin-bottom: 20px; }
       .counter { display: flex; flex-direction: row; align-items: center; justify-content: space-between; }
+	  input[type="number"] { width: 40px; height: 40px; line-height: 38px; padding: 0; border: 1px solid #333; text-align: center; -moz-appearance: textfield; font-size: 18px; }
+	  input[type="number"]::-webkit-outer-spin-button,input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
       .total-scores { cursor: pointer; display: flex; flex-direction: row; align-items: center; justify-content: space-between; }
 	  .total-scores .row-label {visibility: hidden;}
 	  .total-score { width: 140px; text-align: center;}
-	  input[type="number"] { width: 40px; line-height: 40px; padding: 0; border: 1px solid #333; text-align: center; -moz-appearance: textfield; font-size: 18px; }
-	  input[type="number"]::-webkit-outer-spin-button,input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 	  .game-version { border: 0; padding: 0; font-size: 14px; }
 	  .game-version legend { position: absolute; top: -999px; }
 	  .game-version ul { overflow: hidden; position: relative; display: block; list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: row; align-items: center; justify-content: space-evenly; }
@@ -245,6 +245,15 @@ elemScores.forEach((elemScore) => {
     }
     updateTotalScore();
   });
+  elemScore.addEventListener('focus', (e) => {
+	elemScore.select();
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  });
+  elemScore.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+  });
 });
 
 // Update a score
@@ -258,19 +267,6 @@ function updateRowScore(row, player, direction) {
   }
   updateTotalScore();
 }
-
-// Select all on input focus score
-elemScores.forEach((elemScore) => {
-  elemScore.addEventListener('focus', (e) => {
-	elemScore.select();
-    e.preventDefault();
-    e.stopPropagation();
-    return false;
-  });
-  elemScore.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-  });
-});
 
 // Increment score
 elemIncrements.forEach((elemIncrement) => {
