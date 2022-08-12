@@ -1,313 +1,306 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>7 Wonders Duel (Pantheon) score calculator</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="shortcut icon" href="/images/favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
-    <style>
-      * { font-family: 'Open Sans', sans-serif; font-weight: 600; color: #444B53; box-sizing: border-box; }
-      body { background-color: #F6F6F6; margin: 0; padding: 40px 0; position: relative; }
-      .wrap { max-width: 400px; padding: 0 20px; margin: 0 auto; }
-	  .rows {padding: 0;}
-      .row-label { font-size: 16px; width: 80px; }
-      .counter, .score, .total-score { font-size: 32px; }
-      h1, .rows label { text-indent: -99em; position: absolute; width: 0; height: 0; }
-      button { background: none; width: 50px; height: 50px; font-size: 24px; border: none; cursor: pointer; line-height: 38px; }
-      .row { display: flex; flex-direction: row; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-      .counter { display: flex; flex-direction: row; align-items: center; justify-content: space-between; }
-	  input[type="number"] { width: 40px; height: 40px; line-height: 38px; padding: 0; border: 1px solid #333; text-align: center; -moz-appearance: textfield; font-size: 18px; }
-	  input[type="number"]::-webkit-outer-spin-button,input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-      .total-scores { cursor: pointer; display: flex; flex-direction: row; align-items: center; justify-content: space-between; }
-	  .total-scores .row-label {visibility: hidden;}
-	  .total-score { width: 140px; text-align: center;}
-	  .game-version { border: 0; padding: 0; font-size: 14px; }
-	  .game-version legend { position: absolute; top: -999px; }
-	  .game-version ul { overflow: hidden; position: relative; display: block; list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: row; align-items: center; justify-content: space-evenly; }
-	  .game-version li { width: 50%; }
-	  .game-version label { border-radius: 5px; border: 1px solid #DDD; display: block; background: #FFF; color: #999; padding: 6px 30px; margin-bottom: 5px; cursor: pointer; transition: .2s background; position: relative; text-align: center; }
-	  .game-version li:first-child label { border-radius: 4px 0 0 4px; border-right-color: #FFF; }
-	  .game-version li:last-child label { border-radius: 0 4px 4px 0; border-left-color: #FFF; }
-	  input[type="radio"] { opacity: 0; position: absolute; }
-	  .game-version li input[type="radio"]:checked + label { border: 1px solid #333; background: #EEE; color: #333; }
-	  label { -webkit-tap-highlight-color: rgba(0,0,0,0); }
-    </style>
-  </head>
+	<head>
+		<meta charset="utf-8">
+		<title>7 Wonders Duel (Pantheon) score calculator</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="shortcut icon" href="/images/favicon.ico">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+		<style>
+			* { font-family: 'Open Sans', sans-serif; font-weight: 600; color: #444B53; box-sizing: border-box; }
+			body { background-color: #F6F6F6; margin: 0; padding: 40px 0; position: relative; }
+			.wrap { max-width: 400px; padding: 0 20px; margin: 0 auto; }
+			.rows {padding: 0;}
+			.row-label { font-size: 16px; width: 80px; }
+			.counter, .score, .total-score { font-size: 32px; }
+			h1, .rows label { text-indent: -99em; position: absolute; width: 0; height: 0; }
+			button { background: none; width: 50px; height: 50px; font-size: 24px; border: none; cursor: pointer; line-height: 38px; }
+			.row { display: flex; flex-direction: row; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+			.counter { display: flex; flex-direction: row; align-items: center; justify-content: space-between; }
+			input[type="number"] { width: 40px; height: 40px; line-height: 38px; padding: 0; border: 1px solid #333; text-align: center; -moz-appearance: textfield; font-size: 18px; }
+			input[type="number"]::-webkit-outer-spin-button,input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+			.total-scores { cursor: pointer; display: flex; flex-direction: row; align-items: center; justify-content: space-between; }
+			.total-scores .row-label {visibility: hidden;}
+			.total-score { width: 140px; text-align: center;}
+			.game-version { border: 0; padding: 0; font-size: 14px; }
+			.game-version legend { position: absolute; top: -999px; }
+			.game-version ul { overflow: hidden; position: relative; display: block; list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: row; align-items: center; justify-content: space-evenly; }
+			.game-version li { width: 50%; }
+			.game-version label { border-radius: 5px; border: 1px solid #DDD; display: block; background: #FFF; color: #999; padding: 6px 30px; margin-bottom: 5px; cursor: pointer; transition: .2s background; position: relative; text-align: center; }
+			.game-version li:first-child label { border-radius: 4px 0 0 4px; border-right-color: #FFF; }
+			.game-version li:last-child label { border-radius: 0 4px 4px 0; border-left-color: #FFF; }
+			input[type="radio"] { opacity: 0; position: absolute; }
+			.game-version li input[type="radio"]:checked + label { border: 1px solid #333; background: #EEE; color: #333; }
+			label { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<h1>7 Wonders Duel (Pantheon) score calculator</h1>
+			<fieldset class="game-version">
+				<legend>Game version</legend>
+				<ul>
+					<li>
+						<input type="radio" name="game-type" id="core" value="core" class="js-game-type" checked>
+						<label for="core">Core</label>
+					</li>
+					<li>
+						<input type="radio" name="game-type" id="pantheon" value="pantheon" class="js-game-type">
+						<label for="pantheon">Pantheon</label>
+					</li><!--
+					<li>
+						<input type="radio" name="game-type" id="agora" value="agora" class="js-game-type">
+						<label for="agora">Agora</label>
+					</li>-->
+				</ul>
+			</fieldset>
+			<ul class="rows">
+				<li class="row js-row">
+					<h2 class="row-label">Blue</h2>
+					<div class="counter">
+						<label for="player-1-blue">Player 1</label>
+						<button class="js-decrement" data-row="1" data-player="1" tabindex="-1">&ndash;</button>
+						<input id="player-1-blue" type="number" min="0" class="js-score" data-row="1" data-player="1" value="0" tabindex="1" />
+						<button class="js-increment" data-row="1" data-player="1" tabindex="-1">+</button>
+					</div>
+					<div class="counter">
+						<label for="player-2-blue">Player 2</label>
+						<button class="js-decrement" data-row="1" data-player="2" tabindex="-1">&ndash;</button>
+						<input id="player-2-blue" type="number" min="0" class="js-score" data-row="1" data-player="2" value="0" tabindex="10" />
+						<button class="js-increment" data-row="1" data-player="2" tabindex="-1">+</button>
+					</div>
+				</li>
+				<li class="row js-row">
+					<h2 class="row-label">Green</h2>
+					<div class="counter">
+						<label for="player-1-green">Player 1</label>
+						<button class="js-decrement" data-row="2" data-player="1" tabindex="-1">&ndash;</button>
+						<input id="player-1-green" type="number" min="0" class="js-score" data-row="2" data-player="1" value="0" tabindex="2" />
+						<button class="js-increment" data-row="2" data-player="1" tabindex="-1">+</button>
+					</div>
+					<div class="counter">
+						<label for="player-2-green">Player 2</label>
+						<button class="js-decrement" data-row="2" data-player="2" tabindex="-1">&ndash;</button>
+						<input id="player-2-green" type="number" min="0" class="js-score" data-row="2" data-player="2" value="0" tabindex="11" />
+						<button class="js-increment" data-row="2" data-player="2" tabindex="-1">+</button>
+					</div>
+				</li>
+				<li class="row js-row">
+					<h2 class="row-label">Yellow</h2>
+					<div class="counter">
+						<label for="player-1-yellow">Player 1</label>
+						<button class="js-decrement" data-row="3" data-player="1" tabindex="-1">&ndash;</button>
+						<input id="player-1-yellow" type="number" min="0" class="js-score" data-row="3" data-player="1" value="0" tabindex="3" />
+						<button class="js-increment" data-row="3" data-player="1" tabindex="-1">+</button>
+					</div>
+					<div class="counter">
+						<label for="player-2-yellow">Player 1</label>
+						<button class="js-decrement" data-row="3" data-player="2" tabindex="-1">&ndash;</button>
+						<input id="player-2-yellow" type="number" min="0" class="js-score" data-row="3" data-player="2" value="0" tabindex="12" />
+						<button class="js-increment" data-row="3" data-player="2" tabindex="-1">+</button>
+					</div>
+				</li>
+				<li class="row js-row">
+					<h2 class="row-label">Purple</h2>
+					<div class="counter">
+						<label for="player-1-purple">Player 1</label>
+						<button class="js-decrement" data-row="4" data-player="1" tabindex="-1">&ndash;</button>
+						<input id="player-1-purple" type="number" min="0" class="js-score" data-row="4" data-player="1" value="0" tabindex="4" />
+						<button class="js-increment" data-row="4" data-player="1" tabindex="-1">+</button>
+					</div>
+					<div class="counter">
+						<label for="player-2-purple">Player 2</label>
+						<button class="js-decrement" data-row="4" data-player="2" tabindex="-1">&ndash;</button>
+						<input id="player-2-purple" type="number" min="0" class="js-score" data-row="4" data-player="2" value="0" tabindex="13" />
+						<button class="js-increment" data-row="4" data-player="2" tabindex="-1">+</button>
+					</div>
+				</li>
+				<li class="row js-row">
+					<h2 class="row-label">Wonders</h2>
+					<div class="counter">
+						<label for="player-1-wonders">Player 1</label>
+						<button class="js-decrement" data-row="5" data-player="1" tabindex="-1">&ndash;</button>
+						<input id="player-1-wonders" type="number" min="0" class="js-score" data-row="5" data-player="1" value="0" tabindex="5" />
+						<button class="js-increment" data-row="5" data-player="1" tabindex="-1">+</button>
+					</div>
+					<div class="counter">
+						<label for="player-2-wonders">Player 2</label>
+						<button class="js-decrement" data-row="5" data-player="2" tabindex="-1">&ndash;</button>
+						<input id="player-2-wonders" type="number" min="0" class="js-score" data-row="5" data-player="2" value="0" tabindex="14" />
+						<button class="js-increment" data-row="5" data-player="2" tabindex="-1">+</button>
+					</div>
+				</li>
+				<li class="row js-row">
+					<h2 class="row-label">Science</h2>
+					<div class="counter">
+						<label for="player-1-science">Player 1</label>
+						<button class="js-decrement" data-row="6" data-player="1" tabindex="-1">&ndash;</button>
+						<input id="player-1-science" type="number" min="0" class="js-score" data-row="6" data-player="1" value="0" tabindex="6" />
+						<button class="js-increment" data-row="6" data-player="1" tabindex="-1">+</button>
+					</div>
+					<div class="counter">
+						<label for="player-2-science">Player 2</label>
+						<button class="js-decrement" data-row="6" data-player="2" tabindex="-1">&ndash;</button>
+						<input id="player-2-science" type="number" min="0" class="js-score" data-row="6" data-player="2" value="0" tabindex="15" />
+						<button class="js-increment" data-row="6" data-player="2" tabindex="-1">+</button>
+					</div>
+				</li>
+				<li class="row js-row">
+					<h2 class="row-label">Military</h2>
+					<div class="counter">
+						<label for="player-1-military">Player 1</label>
+						<button class="js-decrement" data-row="7" data-player="1" tabindex="-1">&ndash;</button>
+						<input id="player-1-military" type="number" min="0" class="js-score" data-row="7" data-player="1" value="0" tabindex="7" />
+						<button class="js-increment" data-row="7" data-player="1" tabindex="-1">+</button>
+					</div>
+					<div class="counter">
+						<label for="player-2-military">Player 2</label>
+						<button class="js-decrement" data-row="7" data-player="2" tabindex="-1">&ndash;</button>
+						<input id="player-2-military" type="number" min="0" class="js-score" data-row="7" data-player="2" value="0" tabindex="16" />
+						<button class="js-increment" data-row="7" data-player="2" tabindex="-1">+</button>
+					</div>
+				</li>
+				<li class="row js-row">
+					<h2 class="row-label">Coins x 3</h2>
+					<div class="counter">
+						<label for="player-1-coins">Player 1</label>
+						<button class="js-decrement" data-row="8" data-player="1" tabindex="-1">&ndash;</button>
+						<input id="player-1-coins" type="number" min="0" class="js-score" data-row="8" data-player="1" value="0" tabindex="8" />
+						<button class="js-increment" data-row="8" data-player="1" tabindex="-1">+</button>
+					</div>
+					<div class="counter">
+						<label for="player-2-coins">Player 2</label>
+						<button class="js-decrement" data-row="8" data-player="2" tabindex="-1">&ndash;</button>
+						<input id="player-2-coins" type="number" min="0" class="js-score" data-row="8" data-player="2" value="0" tabindex="17" />
+						<button class="js-increment" data-row="8" data-player="2" tabindex="-1">+</button>
+					</div>
+				</li>
+				<li class="row js-row" data-expansion="pantheon">
+					<h2 class="row-label">Divinities</h2>
+					<div class="counter">
+						<label for="player-1-divinities">Player 1</label>
+						<button class="js-decrement" data-row="9" data-player="1" tabindex="-1">&ndash;</button>
+						<input id="player-1-divinities" type="number" min="0" class="js-score" data-row="9" data-player="1" data-expansion="pantheon" value="0" tabindex="9" />
+						<button class="js-increment" data-row="9" data-player="1" tabindex="-1">+</button>
+					</div>
+					<div class="counter">
+						<label for="player-2-divinities">Player 2</label>
+						<button class="js-decrement" data-row="9" data-player="2" tabindex="-1">&ndash;</button>
+						<input id="player-2-divinities" type="number" min="0" class="js-score" data-row="9" data-player="2" data-expansion="pantheon" value="0" tabindex="18" />
+						<button class="js-increment" data-row="9" data-player="2" tabindex="-1">+</button>
+					</div>
+				</li>
+			</ul>
+			<div class="total-scores js-total-scores">
+				<h2 class="row-label">Totals</h2>
+				<div class="total-score js-total-score-player-1">0</div>
+				<div class="total-score js-total-score-player-2">0</div>
+			</div>
+		</div>
+		<script>
+			const gameTypes = document.querySelectorAll(".js-game-type");
+			const elemScores = document.querySelectorAll(".js-score");
+			const elemScoresPlayer1 = document.querySelectorAll(".js-score[data-player='1']");
+			const elemTotalScorePlayer1 = document.querySelector('.js-total-score-player-1');
+			const elemScoresPlayer2 = document.querySelectorAll(".js-score[data-player='2']");
+			const elemTotalScorePlayer2 = document.querySelector('.js-total-score-player-2');
+			const elemIncrements = document.querySelectorAll('.js-increment');
+			const elemDecrements = document.querySelectorAll('.js-decrement');
 
-  <body>
-    <div class="wrap">
-    <h1>7 Wonders Duel (Pantheon) score calculator</h1>
+			document.oncontextmenu = function() {
+				return false;
+			}
 
-    <fieldset class="game-version">
-    <legend>Game version</legend>
-    <ul>
-      <li>
-        <input type="radio" name="game-type" id="core" value="core" class="js-game-type" checked>
-        <label for="core">Core</label>
-      </li>
-      <li>
-        <input type="radio" name="game-type" id="pantheon" value="pantheon" class="js-game-type">
-        <label for="pantheon">Pantheon</label>
-      </li><!--
-      <li>
-        <input type="radio" name="game-type" id="agora" value="agora" class="js-game-type">
-        <label for="agora">Agora</label>
-      </li>-->
-    </ul>
-    </fieldset>
+			gameTypes.forEach((gameType, i) => {
+				gameType.addEventListener('change', (e) => {
+					document.querySelectorAll(".js-score[data-expansion]").forEach((elemScore) => {
+						elemScore.value = 0;
+					});
+					document.querySelectorAll(".js-row[data-expansion]").forEach((row) => {
+						row.style.display = "none";
+					});
+					document.querySelectorAll(".js-row[data-expansion='" + e.target.value + "']").forEach((row) => {
+						row.style.display = "flex";
+					});
+					updateTotalScore();
+				});
+			});
 
-    <ul class="rows">
-      <li class="row js-row">
-        <h2 class="row-label">Blue</h2>
-        <div class="counter">
-		  <label for="player-1-blue">Player 1</label>
-          <button class="js-decrement" data-row="1" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-blue" type="number" min="0" class="js-score" data-row="1" data-player="1" value="0" tabindex="1" />
-          <button class="js-increment" data-row="1" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter">
-		  <label for="player-2-blue">Player 2</label>
-          <button class="js-decrement" data-row="1" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-blue" type="number" min="0" class="js-score" data-row="1" data-player="2" value="0" tabindex="10" />
-          <button class="js-increment" data-row="1" data-player="2" tabindex="-1">+</button>
-        </div>
-      </li>
-      <li class="row js-row">
-        <h2 class="row-label">Green</h2>
-        <div class="counter">
-		  <label for="player-1-green">Player 1</label>
-          <button class="js-decrement" data-row="2" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-green" type="number" min="0" class="js-score" data-row="2" data-player="1" value="0" tabindex="2" />
-          <button class="js-increment" data-row="2" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter">
-		  <label for="player-2-green">Player 2</label>
-          <button class="js-decrement" data-row="2" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-green" type="number" min="0" class="js-score" data-row="2" data-player="2" value="0" tabindex="11" />
-          <button class="js-increment" data-row="2" data-player="2" tabindex="-1">+</button>
-        </div>
-      </li>
-      <li class="row js-row">
-        <h2 class="row-label">Yellow</h2>
-        <div class="counter">
-		  <label for="player-1-yellow">Player 1</label>
-          <button class="js-decrement" data-row="3" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-yellow" type="number" min="0" class="js-score" data-row="3" data-player="1" value="0" tabindex="3" />
-          <button class="js-increment" data-row="3" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter">
-		  <label for="player-2-yellow">Player 1</label>
-          <button class="js-decrement" data-row="3" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-yellow" type="number" min="0" class="js-score" data-row="3" data-player="2" value="0" tabindex="12" />
-          <button class="js-increment" data-row="3" data-player="2" tabindex="-1">+</button>
-        </div>
-      </li>
-      <li class="row js-row">
-        <h2 class="row-label">Purple</h2>
-        <div class="counter">
-		  <label for="player-1-purple">Player 1</label>
-          <button class="js-decrement" data-row="4" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-purple" type="number" min="0" class="js-score" data-row="4" data-player="1" value="0" tabindex="4" />
-          <button class="js-increment" data-row="4" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter">
-		  <label for="player-2-purple">Player 2</label>
-          <button class="js-decrement" data-row="4" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-purple" type="number" min="0" class="js-score" data-row="4" data-player="2" value="0" tabindex="13" />
-          <button class="js-increment" data-row="4" data-player="2" tabindex="-1">+</button>
-        </div>
-      </li>
-      <li class="row js-row">
-        <h2 class="row-label">Wonders</h2>
-        <div class="counter">
-		  <label for="player-1-wonders">Player 1</label>
-          <button class="js-decrement" data-row="5" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-wonders" type="number" min="0" class="js-score" data-row="5" data-player="1" value="0" tabindex="5" />
-          <button class="js-increment" data-row="5" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter">
-		  <label for="player-2-wonders">Player 2</label>
-          <button class="js-decrement" data-row="5" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-wonders" type="number" min="0" class="js-score" data-row="5" data-player="2" value="0" tabindex="14" />
-          <button class="js-increment" data-row="5" data-player="2" tabindex="-1">+</button>
-        </div>
-      </li>
-      <li class="row js-row">
-        <h2 class="row-label">Science</h2>
-        <div class="counter">
-		  <label for="player-1-science">Player 1</label>
-          <button class="js-decrement" data-row="6" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-science" type="number" min="0" class="js-score" data-row="6" data-player="1" value="0" tabindex="6" />
-          <button class="js-increment" data-row="6" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter">
-		  <label for="player-2-science">Player 2</label>
-          <button class="js-decrement" data-row="6" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-science" type="number" min="0" class="js-score" data-row="6" data-player="2" value="0" tabindex="15" />
-          <button class="js-increment" data-row="6" data-player="2" tabindex="-1">+</button>
-        </div>
-      </li>
-      <li class="row js-row">
-        <h2 class="row-label">Military</h2>
-        <div class="counter">
-		  <label for="player-1-military">Player 1</label>
-          <button class="js-decrement" data-row="7" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-military" type="number" min="0" class="js-score" data-row="7" data-player="1" value="0" tabindex="7" />
-          <button class="js-increment" data-row="7" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter">
-		  <label for="player-2-military">Player 2</label>
-          <button class="js-decrement" data-row="7" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-military" type="number" min="0" class="js-score" data-row="7" data-player="2" value="0" tabindex="16" />
-          <button class="js-increment" data-row="7" data-player="2" tabindex="-1">+</button>
-        </div>
-      </li>
-      <li class="row js-row">
-        <h2 class="row-label">Coins x 3</h2>
-        <div class="counter">
-		  <label for="player-1-coins">Player 1</label>
-          <button class="js-decrement" data-row="8" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-coins" type="number" min="0" class="js-score" data-row="8" data-player="1" value="0" tabindex="8" />
-          <button class="js-increment" data-row="8" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter">
-		  <label for="player-2-coins">Player 2</label>
-          <button class="js-decrement" data-row="8" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-coins" type="number" min="0" class="js-score" data-row="8" data-player="2" value="0" tabindex="17" />
-          <button class="js-increment" data-row="8" data-player="2" tabindex="-1">+</button>
-        </div>
-      </li>
-      <li class="row js-row" data-expansion="pantheon">
-        <h2 class="row-label">Divinities</h2>
-        <div class="counter">
-		  <label for="player-1-divinities">Player 1</label>
-          <button class="js-decrement" data-row="9" data-player="1" tabindex="-1">&ndash;</button>
-          <input id="player-1-divinities" type="number" min="0" class="js-score" data-row="9" data-player="1" data-expansion="pantheon" value="0" tabindex="9" />
-          <button class="js-increment" data-row="9" data-player="1" tabindex="-1">+</button>
-        </div>
-        <div class="counter">
-		  <label for="player-2-divinities">Player 2</label>
-          <button class="js-decrement" data-row="9" data-player="2" tabindex="-1">&ndash;</button>
-          <input id="player-2-divinities" type="number" min="0" class="js-score" data-row="9" data-player="2" data-expansion="pantheon" value="0" tabindex="18" />
-          <button class="js-increment" data-row="9" data-player="2" tabindex="-1">+</button>
-        </div>
-	  </li>
-    </ul>
-    <div class="total-scores js-total-scores">
-      <h2 class="row-label">Totals</h2>
-	  <div class="total-score js-total-score-player-1">0</div>
-	  <div class="total-score js-total-score-player-2">0</div>
-	</div>
-    </div>
+			gameTypes[0].dispatchEvent(new Event('change'));
 
-    <script>
+			elemScores.forEach((elemScore) => {
+				elemScore.addEventListener('change', (e) => {
+					if (!elemScore.value) {
+						elemScore.value = 0;
+					}
+					updateTotalScore();
+				});
 
-const gameTypes = document.querySelectorAll(".js-game-type");
+				elemScore.addEventListener('focus', (e) => {
+					elemScore.select();
+					e.preventDefault();
+					e.stopPropagation();
+					return false;
+				});
 
-const elemScores = document.querySelectorAll(".js-score");
+				elemScore.addEventListener('contextmenu', (e) => {
+					e.preventDefault();
+				});
+			});
 
-const elemScoresPlayer1 = document.querySelectorAll(".js-score[data-player='1']");
-const elemTotalScorePlayer1 = document.querySelector('.js-total-score-player-1');
+			// Update a score
+			function updateRowScore(row, player, direction) {
+				var scoreInput = document.querySelector(".js-score[data-row='" + row + "'][data-player='" + player + "']");
+				if (direction == 'decrement' && scoreInput.value > 0) {
+					scoreInput.value = parseInt(scoreInput.value) - 1
+				}
+				if (direction == 'increment') {
+					scoreInput.value = parseInt(scoreInput.value) + 1
+				}
+				updateTotalScore();
+			}
 
-const elemScoresPlayer2 = document.querySelectorAll(".js-score[data-player='2']");
-const elemTotalScorePlayer2 = document.querySelector('.js-total-score-player-2');
+			// Increment score
+			elemIncrements.forEach((elemIncrement) => {
+				elemIncrement.addEventListener('click', (e) => {
+					updateRowScore(elemIncrement.dataset.row, elemIncrement.dataset.player, 'increment');
+				});
+			});
 
-const elemIncrements = document.querySelectorAll('.js-increment');
-const elemDecrements = document.querySelectorAll('.js-decrement');
+			// Decrement score
+			elemDecrements.forEach((elemDecrement) => {
+				elemDecrement.addEventListener('click', (e) => {
+					updateRowScore(elemDecrement.dataset.row, elemDecrement.dataset.player, 'decrement');
+				});
+			});
 
-document.oncontextmenu = function() {
-  return false;
-}
+			// Update the total scores with all subtotals
+			function updateTotalScore() {
+				var scorePlayer1 = 0;
+				var scorePlayer2 = 0;
+				elemScoresPlayer1.forEach((elemScore) => {
+					scorePlayer1 += parseInt(elemScore.value);
+				});
+				elemScoresPlayer2.forEach((elemScore) => {
+					scorePlayer2 += parseInt(elemScore.value);
+				});
+				elemTotalScorePlayer1.innerHTML = scorePlayer1;
+				elemTotalScorePlayer2.innerHTML = scorePlayer2;
+			}
 
-gameTypes.forEach((gameType, i) => {
-  gameType.addEventListener('change', (e) => {
-    document.querySelectorAll(".js-score[data-expansion]").forEach((elemScore) => {
-  	  elemScore.value = 0;
-    });
-	document.querySelectorAll(".js-row[data-expansion]").forEach((row) => {
-  	  row.style.display = "none";
-    });
-	document.querySelectorAll(".js-row[data-expansion='" + e.target.value + "']").forEach((row) => {
-  	  row.style.display = "flex";
-    });
-    updateTotalScore();
-  });
-});
-gameTypes[0].dispatchEvent(new Event('change'));
-
-elemScores.forEach((elemScore) => {
-  elemScore.addEventListener('change', (e) => {
-    if (!elemScore.value) {
-      elemScore.value = 0;
-    }
-    updateTotalScore();
-  });
-  elemScore.addEventListener('focus', (e) => {
-	elemScore.select();
-    e.preventDefault();
-    e.stopPropagation();
-    return false;
-  });
-  elemScore.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-  });
-});
-
-// Update a score
-function updateRowScore(row, player, direction) {
-  var scoreInput = document.querySelector(".js-score[data-row='" + row + "'][data-player='" + player + "']");
-  if (direction == 'decrement' && scoreInput.value > 0) {
-    scoreInput.value = parseInt(scoreInput.value) - 1
-  }
-  if (direction == 'increment') {
-    scoreInput.value = parseInt(scoreInput.value) + 1
-  }
-  updateTotalScore();
-}
-
-// Increment score
-elemIncrements.forEach((elemIncrement) => {
-  elemIncrement.addEventListener('click', (e) => {
-	updateRowScore(elemIncrement.dataset.row, elemIncrement.dataset.player, 'increment');
-  });
-});
-
-// Decrement score
-elemDecrements.forEach((elemDecrement) => {
-  elemDecrement.addEventListener('click', (e) => {
-	updateRowScore(elemDecrement.dataset.row, elemDecrement.dataset.player, 'decrement');
-  });
-});
-
-// Update the total scores with all subtotals
-function updateTotalScore() {
-  var scorePlayer1 = 0;
-  var scorePlayer2 = 0;
-  elemScoresPlayer1.forEach((elemScore) => {
-    scorePlayer1 += parseInt(elemScore.value);
-  });
-  elemScoresPlayer2.forEach((elemScore) => {
-    scorePlayer2 += parseInt(elemScore.value);
-  });
-  elemTotalScorePlayer1.innerHTML = scorePlayer1;
-  elemTotalScorePlayer2.innerHTML = scorePlayer2;
-}
-
-// Reset all scores
-document.querySelector('.js-total-scores').addEventListener('click', (e) => {
-  var result = window.confirm('Reset your score?');
-  if (result == true) {
-    elemScores.forEach((elemScore) => {
-	  elemScore.value = 0;
-    });
-  	updateTotalScore();
-  }
-  e.stopPropagation();
-});
-    </script>
-  </body>
+			// Reset all scores
+			document.querySelector('.js-total-scores').addEventListener('click', (e) => {
+				var result = window.confirm('Reset your score?');
+				if (result == true) {
+					elemScores.forEach((elemScore) => {
+						elemScore.value = 0;
+					});
+					updateTotalScore();
+				}
+				e.stopPropagation();
+			});
+		</script>
+	</body>
 </html>
